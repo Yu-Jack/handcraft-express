@@ -1,20 +1,20 @@
 # handcraft-express
 
-This repository will implement the minimum function of express for practice typescript.
-Including the following features of express. 
+This repository will implement the minimum function of express for practice typescript.  
+Including the following features of express.   
 
-[ ] GET, POST
-[ ] middleware function which could go next router
+[ ] GET, POST  
+[ ] middleware function which could go next router  
 
-Here, we'll use supertest to test our handcraft-express.
-But, supertest accept the function as parameter, so our handcraft-epress must be return the type of function.
+Here, we'll use supertest to test our handcraft-express.  
+But, supertest accept the function as parameter, so our handcraft-epress must be return the type of function.  
 
-Then use typescript reflect-metadata to build the next.js.
+Then use typescript reflect-metadata to build the next.js.  
 
 ## TODO
 
-[ ] Implement not found handler
-[ ] Enhance the router mapping performance
+[ ] Implement not found handler  
+[ ] Enhance the router mapping performance  
 
 ## Testing
 
@@ -22,7 +22,7 @@ You could run `npm run test` to do unit test for this library.
 
 ## Some tips
 
-You could use `keybindings.json` in vscode to run test with hotkey.
+You could use `keybindings.json` in vscode to run test with hotkey.  
 This is my `keybindings.json` setting.
 ```
 {
