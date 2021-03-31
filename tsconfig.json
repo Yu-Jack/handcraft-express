@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "lib": ["es2018"],
+        "module": "commonjs",
+        "target": "es2018",
+        "outDir": "build",
+        "rootDir": "./src",
+        "baseUrl": ".",
+        "esModuleInterop": true,
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
+        },
+        "typeRoots" : [
+            "node_modules/@types",
+        ]
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
