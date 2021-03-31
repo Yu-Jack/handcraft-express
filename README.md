@@ -1,6 +1,6 @@
 # handcraft-express
 
-This repository will implement the minimum function of express for practice typescript.  
+This repository will implement the minimum function of express.  
 Including the following features of express.   
 
 [ ] GET, POST  
