@@ -5,8 +5,18 @@ interface ObjectKey {
     [key: string]: any;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface Request extends http.IncomingMessage {
+
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface Response extends http.ServerResponse {
+
+}
+
 interface MiddlewareFunction {
-    (request: http.IncomingMessage & ObjectKey, response: http.OutgoingMessage, next ? : () => void): void;
+    (request: Request & ObjectKey, response: Response, next ? : () => void): void;
 }
 
 type HttpMethod = "GET" | "*";
@@ -17,14 +27,14 @@ interface Router {
     callbacks: Array < MiddlewareFunction > ;
 }
 
-interface ExpressApp {
-    (request: http.IncomingMessage, response: http.OutgoingMessage): void;
+interface ExpressApp  {
+    (request: Request, response: Response): void;
     routers: Array < Router > ;
     use: (...args: Array < string | MiddlewareFunction > ) => void;
     get: (url: string, ...args: Array < MiddlewareFunction > ) => void;
     registerRouter: (method: HttpMethod, parameters: Array < string | MiddlewareFunction > ) => void;
     listen: (port: number, callback: () => void) => void;
-    handleMainLogic: (request: http.IncomingMessage, response: http.OutgoingMessage) => void;
+    handleMainLogic: (request: Request, response: Response) => void;
 }
 
 function startExpress(): ExpressApp {
@@ -92,13 +102,18 @@ function startExpress(): ExpressApp {
                 });
 
                 if (response.writableEnded) {
-                    break;
+                    return;
                 }
             }
             if (response.writableEnded) {
-                break;
+                return;
             }
         }
+
+        const targetUrl = request.url;
+        const method = request.method;
+        response.writeHead(404,  { "Content-Type": "text/plain" });
+        response.end(`${method} ${targetUrl} not found`);
     };
     return app;
 }
