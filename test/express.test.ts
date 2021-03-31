@@ -56,7 +56,17 @@ describe("express test", () => {
                     });
             });
 
+            it("request to not existed path, and should get the 404 not found status", (done) => {
+                const app = express();
             
+                app.get("/path1", (req, res) => {
+                    res.end("hi");
+                });
+            
+                request(app)
+                    .get("/not-existed-path")
+                    .expect(404, done);
+            });
         });
 
 
