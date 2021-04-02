@@ -29,7 +29,7 @@ export default class Core {
     }
 
     handleMainLogic(request: Request, response: Response): void {
-        let maxLimitOrder = 0;
+        let maxLimitOrder = null;
         let foundUrl = false;
 
         if (this.router.has(request.url)) {
@@ -38,7 +38,14 @@ export default class Core {
         }
 
         for (const middleware of this.middlewares) {
-            if (middleware.order < maxLimitOrder) {
+            let runAble = false;
+            if (!maxLimitOrder) {
+                runAble = true;
+            }
+            if (maxLimitOrder && middleware.order < maxLimitOrder) {
+                runAble = true;
+            }
+            if (runAble) {
                 const callbacks = middleware.callbacks;
                 this.triggerCallback(callbacks, request, response);
             }
