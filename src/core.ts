@@ -1,7 +1,5 @@
-import {
-    Middlewares, Request, Response, MiddlewareFunction
-} from "@type/express";
-
+import { HttpMethod, ObjectKey } from "./@types/common";
+import { ExpressRequest, ExpressResponse, MiddlewareFunction, Middlewares } from "./@types/express";
 export default class Core {
     router: Map<string, Array < ObjectKey >>;
     middlewares: Array < Middlewares > ;
@@ -12,7 +10,7 @@ export default class Core {
         this.router = new Map();
     }
 
-    triggerCallback(callbacks: Array<MiddlewareFunction>, request: Request, response: Response): void {
+    triggerCallback(callbacks: Array<MiddlewareFunction>, request: ExpressRequest, response: ExpressResponse): void {
         for (let i = 0; i < callbacks.length;) {
             const callback = callbacks[i];
             
@@ -28,7 +26,7 @@ export default class Core {
         }
     }
 
-    handleMainLogic(request: Request, response: Response): void {
+    handleMainLogic(request: ExpressRequest, response: ExpressResponse): void {
         let maxLimitOrder = null;
         let foundUrl = false;
 

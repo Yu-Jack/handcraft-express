@@ -1,8 +1,13 @@
 import http from "http";
+import { ExpressRequest, ExpressResponse, MiddlewareFunction } from "./@types/express";
 import Core from "./core";
-import {
-    ExpressApp,
-} from "@type/express";
+
+interface ExpressApp  {
+    (request: ExpressRequest, response: ExpressResponse): void;
+    use: (...args: Array < string | MiddlewareFunction > ) => void;
+    get: (url: string, ...args: Array < MiddlewareFunction > ) => void;
+    listen: (port: number, callback: () => void) => void;
+}
 
 function startExpress(): ExpressApp {
     const core = new Core();
