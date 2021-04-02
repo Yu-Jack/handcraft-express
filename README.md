@@ -1,6 +1,6 @@
 # handcraft-express
 
-This repository will implement the minimum function of express.  
+This repository will implement the minimum function of express to practic how to do DDD.  
 Including the following features of express.   
 
 [ ] GET, POST  
@@ -15,6 +15,7 @@ Then use typescript reflect-metadata to build the next.js.
 
 [ ] Implement not found handler  
 [ ] Enhance the router mapping performance  
+[ ] Make some public method into private.  
 
 ## Testing
 
