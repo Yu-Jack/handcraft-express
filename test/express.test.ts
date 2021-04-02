@@ -166,6 +166,26 @@ describe("express test", () => {
                         done();
                     });
             });
+
+            it("requset to non-existed path '/', but there are some middlewares respond, and should get resopnse from these middlewares", (done) => {
+                const responseText = "hi";
+                const expectedText = "hi";
+                const app = express();
+                app.use((req, res, next) => {
+                    req.data = responseText;
+                    next();
+                });
+                app.use((req, res, next) => {
+                    res.end(req.data);
+                });
+    
+                request(app)
+                    .get("/")
+                    .end((err, response) => {
+                        expcet.deepStrictEqual(response.text, expectedText);
+                        done();
+                    });
+            });
         });
     });
 });
