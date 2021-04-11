@@ -28,7 +28,9 @@ function startExpress(): ExpressApp {
     };
 
     app.listen = function (port, callback) {
-        http.createServer(core.handleMainLogic).listen(port, callback);
+        http.createServer(function (request, response) {
+            core.handleMainLogic(request, response);
+        }).listen(port, callback);
     };
 
     return app;

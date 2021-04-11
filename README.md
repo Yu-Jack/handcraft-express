@@ -19,7 +19,7 @@ Then use typescript reflect-metadata to build the next.js.
 
 ## Testing
 
-You could run `npm run test` to do unit test for this library.
+You could run `npm run test` to do test for this library.
 
 ## Some tips
 
