@@ -57,10 +57,12 @@ export default class Core {
             });
         }
 
-        const targetUrl = request.url;
-        const method = request.method;
-        response.writeHead(404,  { "Content-Type": "text/plain" });
-        response.end(`${method} ${targetUrl} not found`);
+        if (!response.writableEnded) {
+            const targetUrl = request.url;
+            const method = request.method;
+            response.writeHead(404,  { "Content-Type": "text/plain" });
+            response.end(`${method} ${targetUrl} not found`);
+        }
     }
 
     registerRouter(method: HttpMethod, parameters: Array < string | MiddlewareFunction > ): void {
